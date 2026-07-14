@@ -728,7 +728,7 @@ const ConferenceDetail = ({ conference, onBack }) => {
   const fetchAbstracts = useCallback(() => {
     setAbstractLoading(true);
     axios
-      .get(`${import.meta.env.VITE_ABSTRACT_API_URL}/abstracts/domain/${conference.domain}`)
+      .get(`${import.meta.env.VITE_API_URL}/abstracts/domain/${conference.domain}`)
       .then((res) => setAbstracts(Array.isArray(res.data) ? res.data : []))
       .catch((err) => { console.error("Abstract API Error:", err); setAbstracts([]); })
       .finally(() => setAbstractLoading(false));
@@ -1073,7 +1073,7 @@ const ConferenceDetail = ({ conference, onBack }) => {
                       <td className="px-5 py-4 text-white/70">{a.university}</td>
                       <td className="px-5 py-4">
                         <button
-                          onClick={(e) => handlePdfDownload(e, `${import.meta.env.VITE_ABSTRACT_API_URL}/abstracts/file/${a._id}`, `${a.firstName || 'abstract'}.pdf`)}
+                          onClick={(e) => handlePdfDownload(e, `${import.meta.env.VITE_API_URL}/abstracts/file/${a._id}`, `${a.firstName || 'abstract'}.pdf`)}
                           className="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 rounded-lg transition-all text-xs font-semibold tracking-wide flex items-center space-x-1"
                         >
                           <Download size={14} />
