@@ -29,6 +29,7 @@ import {
   ChevronRight,
   Menu,
   Lock,
+  CreditCard,
 } from "lucide-react";
 
 const handlePdfDownload = async (e, fileUrl, fallbackName) => {
@@ -153,31 +154,31 @@ const Admin = () => {
 /* ================= DATA ================= */
 
 const CONFERENCES = [
-  { name: "FOODMEET 2026", domain: "foodmeet.helixconferences.com" },
-  { name: "FOODMICRO 2026", domain: "foodmicrobiome.helixconferences.com" },
-  { name: "AGRIREGEN 2026", domain: "agritech.helixconferences.com" },
-  { name: "FOODTECH 2026", domain: "foodtech.helixconferences.com" },
-  { name: "MILLETS 2026", domain: "millets.helixconferences.com" },
-  { name: "MEDICLAVE 2026", domain: "mediclave.helixconferences.com" },
-  { name: "DIGIPATH 2026", domain: "digital-pathology.helixconferences.com" },
-  { name: "PRECISION MEDICINE 2026", domain: "precisionmedicine.helixconferences.com" },
-  { name: "AESTHETICA 2026", domain: "cosmetology.helixconferences.com" },
-  { name: "BIOCON 2026", domain: "biocon.helixconferences.com" },
-  { name: "SYNBIO 2026", domain: "syntheticbiology.helixconferences.com" },
-  { name: "MICROBIOME 2026", domain: "microbiome.helixconferences.com" },
-  { name: "RARE DISEASE 2026", domain: "raredisease.helixconferences.com" },
-  { name: "QUANTUMTECH 2026", domain: "quantumtech.helixconferences.com" },
-  { name: "ZEROTRUSTAI 2026", domain: "zerotrust-ai.helixconferences.com" },
-  { name: "SMART MATERIALS 2026", domain: "smartmaterials.helixconferences.com" },
-  { name: "MATENERGY 2026", domain: "advancedmaterials.helixconferences.com" },
-  { name: "PHARMATECH 2026", domain: "pharmatech.helixconferences.com" },
-  { name: "AI DRUG 2026", domain: "drugdiscovery.helixconferences.com" },
-  { name: "CELLGENE 2026", domain: "cellgene.helixconferences.com" },
-  { name: "PHARMACCESS 2026", domain: "pharma.helixconferences.com" },
-  { name: "NURSE SUMMIT 2026", domain: "nursesummit.helixconferences.com" },
-  { name: "AI NURSE 2026", domain: "nursing.helixconferences.com" },
-  { name: "ER SUMMIT 2026", domain: "criticalcare.helixconferences.com" },
-  { name: "NURSE LEAD 2026", domain: "nursingleadership.helixconferences.com" },
+  { name: "FOODMEET 2026", domain: "foodmeet.helixconferences.com", id: "FOODMEET-2026" },
+  { name: "FOODMICRO 2026", domain: "foodmicrobiome.helixconferences.com", id: "FOODMICRO-2026" },
+  { name: "AGRIREGEN 2026", domain: "agritech.helixconferences.com", id: "AGRIREGEN-2026" },
+  { name: "FOODTECH 2026", domain: "foodtech.helixconferences.com", id: "FOODTECH-2026" },
+  { name: "MILLETS 2026", domain: "millets.helixconferences.com", id: "MILLETS-2026" },
+  { name: "MEDICLAVE 2026", domain: "mediclave.helixconferences.com", id: "MEDICLAVE 2026" },
+  { name: "DIGIPATH 2026", domain: "digital-pathology.helixconferences.com", id: "DIGIPATH-2026" },
+  { name: "PRECISION MEDICINE 2026", domain: "precisionmedicine.helixconferences.com", id: "PRECISIONMEDICINE-2026" },
+  { name: "AESTHETICA 2026", domain: "cosmetology.helixconferences.com", id: "AESTHETICA-2026" },
+  { name: "BIOCON 2026", domain: "biocon.helixconferences.com", id: "BIOCON-2026" },
+  { name: "SYNBIO 2026", domain: "syntheticbiology.helixconferences.com", id: "SYNBIO-2026" },
+  { name: "MICROBIOME 2026", domain: "microbiome.helixconferences.com", id: "MICROBIOME-2026" },
+  { name: "RARE DISEASE 2026", domain: "raredisease.helixconferences.com", id: "RAREDISEASE-2026" },
+  { name: "QUANTUMTECH 2026", domain: "quantumtech.helixconferences.com", id: "QUANTUMTECH-2026" },
+  { name: "ZEROTRUSTAI 2026", domain: "zerotrust-ai.helixconferences.com", id: "ZEROTRUSTAI-2026" },
+  { name: "SMART MATERIALS 2026", domain: "smartmaterials.helixconferences.com", id: "SMARTMATERIALS-2026" },
+  { name: "MATENERGY 2026", domain: "advancedmaterials.helixconferences.com", id: "MATENERGY-2026" },
+  { name: "PHARMATECH 2026", domain: "pharmatech.helixconferences.com", id: "PHARMTECH-2026" },
+  { name: "AI DRUG 2026", domain: "drugdiscovery.helixconferences.com", id: "AIDRUG-2026" },
+  { name: "CELLGENE 2026", domain: "cellgene.helixconferences.com", id: "CELLGENE-2026" },
+  { name: "PHARMACCESS 2026", domain: "pharma.helixconferences.com", id: "PHARMACCESS-2026" },
+  { name: "NURSE SUMMIT 2026", domain: "nursesummit.helixconferences.com", id: "NURSESUMMIT-2026" },
+  { name: "AI NURSE 2026", domain: "nursing.helixconferences.com", id: "AINURSE-2026" },
+  { name: "ER SUMMIT 2026", domain: "criticalcare.helixconferences.com", id: "ER-SUMMIT-2026" },
+  { name: "NURSE LEAD 2026", domain: "nursingleadership.helixconferences.com", id: "NURSELEAD-2026" },
 ];
 
 /* ================= VIEW MODAL ================= */
@@ -187,10 +188,24 @@ const ViewModal = ({ item, type, onClose }) => {
   const isContact = type === "contact";
   const isBrochure = type === "brochure";
   const isChatbotContact = type === "chatbotContact";
-  const isAbstract = !isContact && !isBrochure && !isChatbotContact;
+  const isRegistration = type === "registration";
+  const isAbstract = !isContact && !isBrochure && !isChatbotContact && !isRegistration;
 
   let fields = [];
-  if (isChatbotContact) {
+  if (isRegistration) {
+    fields = [
+      { icon: <User size={16} />, label: "First Name", value: item.firstName },
+      { icon: <User size={16} />, label: "Last Name", value: item.lastName },
+      { icon: <Mail size={16} />, label: "Email", value: item.email },
+      { icon: <Phone size={16} />, label: "Phone", value: item.mobileNumber || "—" },
+      { icon: <Building2 size={16} />, label: "University", value: item.university || "—" },
+      { icon: <Tag size={16} />, label: "Plan", value: item.plan || "—" },
+      { icon: <CreditCard size={16} />, label: "Status", value: item.status || "—" },
+      { icon: <MapPin size={16} />, label: "Address", value: item.address || "—" },
+      { icon: <Globe size={16} />, label: "City", value: item.city || "—" },
+      { icon: <Globe size={16} />, label: "Country", value: item.country || "—" },
+    ];
+  } else if (isChatbotContact) {
     fields = [
       { icon: <User size={16} />, label: "Name", value: item.name },
       { icon: <Mail size={16} />, label: "Email", value: item.email },
@@ -262,7 +277,7 @@ const ViewModal = ({ item, type, onClose }) => {
                 {isContact || isChatbotContact ? <Mail size={18} /> : isBrochure ? <Download size={18} /> : <FileText size={18} />}
               </span>
               <span className="font-semibold text-white">
-                {isChatbotContact ? "Chatbot Contact Details" : isContact ? "Contact Details" : isBrochure ? "Brochure Details" : "Abstract Details"}
+                {isRegistration ? "Registration Details" : isChatbotContact ? "Chatbot Contact Details" : isContact ? "Contact Details" : isBrochure ? "Brochure Details" : "Abstract Details"}
               </span>
             </div>
             <motion.button
@@ -317,6 +332,7 @@ const NAV_ITEMS = [
   { key: "conferences", label: "Helix Conferences", icon: <CalendarDays size={18} /> },
   { key: "subdomains", label: "Subdomains", icon: <Network size={18} /> },
   { key: "abstracts", label: "Helix Abstract Details", icon: <FileText size={18} /> },
+  { key: "payments", label: "Global Payments", icon: <CreditCard size={18} /> },
 ];
 
 const Dashboard = ({ onLogout }) => {
@@ -550,6 +566,10 @@ const Dashboard = ({ onLogout }) => {
               <HelixAbstractDetailsView key="abstracts" />
             )}
 
+            {!isHelixSubMenu && activeNav === "payments" && (
+              <GlobalPaymentsView key="payments" />
+            )}
+
             {!isHelixSubMenu && activeNav === "conferences" && !selectedConference && (
               <motion.div
                 key="conferences-home"
@@ -715,6 +735,9 @@ const ConferenceDetail = ({ conference, onBack }) => {
   const [brochures, setBrochures] = useState([]);
   const [brochureLoading, setBrochureLoading] = useState(false);
   const [brochureSearch, setBrochureSearch] = useState("");
+  const [registrations, setRegistrations] = useState([]);
+  const [registrationLoading, setRegistrationLoading] = useState(false);
+  const [registrationSearch, setRegistrationSearch] = useState("");
 
   const fetchContacts = useCallback(() => {
     setLoading(true);
@@ -743,9 +766,20 @@ const ConferenceDetail = ({ conference, onBack }) => {
       .finally(() => setBrochureLoading(false));
   }, [conference.domain]);
 
+  const fetchRegistrations = useCallback(() => {
+    setRegistrationLoading(true);
+    const identifier = conference.id || conference.domain;
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/api/registrations/domain/${identifier}`)
+      .then((res) => setRegistrations(Array.isArray(res.data) ? res.data : []))
+      .catch((err) => { console.error("Registration API Error:", err); setRegistrations([]); })
+      .finally(() => setRegistrationLoading(false));
+  }, [conference.id, conference.domain]);
+
   useEffect(() => { fetchContacts(); }, [fetchContacts]);
   useEffect(() => { if (tab === "abstracts") fetchAbstracts(); }, [tab, fetchAbstracts]);
   useEffect(() => { if (tab === "brochures") fetchBrochures(); }, [tab, fetchBrochures]);
+  useEffect(() => { if (tab === "registrations") fetchRegistrations(); }, [tab, fetchRegistrations]);
 
   const filteredContacts = contacts.filter((c) => {
     const q = contactSearch.toLowerCase();
@@ -772,6 +806,18 @@ const ConferenceDetail = ({ conference, onBack }) => {
       `${b.firstName} ${b.lastName}`.toLowerCase().includes(q) ||
       b.email?.toLowerCase().includes(q) ||
       b.university?.toLowerCase().includes(q)
+    );
+  });
+
+  const filteredRegistrations = registrations.filter((r) => {
+    // Only show completed payments
+    if (r.status !== 'paid' && r.status !== 'success') return false;
+    
+    const q = registrationSearch.toLowerCase();
+    return (
+      `${r.firstName} ${r.lastName}`.toLowerCase().includes(q) ||
+      r.email?.toLowerCase().includes(q) ||
+      r.plan?.toLowerCase().includes(q)
     );
   });
 
@@ -807,6 +853,7 @@ const ConferenceDetail = ({ conference, onBack }) => {
           { key: "contact", label: "Contacts", icon: <Mail size={15} /> },
           { key: "abstracts", label: "Abstracts", icon: <FileText size={15} /> },
           { key: "brochures", label: "Brochures", icon: <Download size={15} /> },
+          { key: "registrations", label: "Registrations", icon: <CreditCard size={15} /> },
         ].map((t) => (
           <motion.button
             key={t.key}
@@ -1084,6 +1131,92 @@ const ConferenceDetail = ({ conference, onBack }) => {
                         <button
                           onClick={() => openView(a, "abstract")}
                           className="px-3 py-1.5 bg-violet-500/10 hover:bg-violet-500/20 text-violet-300 border border-violet-500/20 hover:border-violet-500/40 rounded-lg transition-all text-xs font-semibold tracking-wide"
+                        >
+                          View
+                        </button>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </motion.div>
+      )}
+      {/* ---- REGISTRATIONS TAB ---- */}
+      {tab === "registrations" && (
+        <motion.div
+          key="registrations-tab"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="relative flex-1">
+              <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+              <input
+                type="text"
+                value={registrationSearch}
+                onChange={(e) => setRegistrationSearch(e.target.value)}
+                placeholder="Search registrations…"
+                className="w-full pl-9 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-white/25 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/30 transition-all"
+              />
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.93 }}
+              onClick={fetchRegistrations}
+              disabled={registrationLoading}
+              className="flex items-center space-x-1.5 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white/50 hover:text-purple-300 text-sm transition-all"
+            >
+              <RefreshCw size={14} className={registrationLoading ? "animate-spin" : ""} />
+              <span className="hidden sm:inline">Refresh</span>
+            </motion.button>
+          </div>
+
+          {registrationLoading && (
+            <div className="flex items-center justify-center space-x-2 text-purple-300/60 py-12">
+              <RefreshCw size={18} className="animate-spin" />
+              <span>Loading registrations…</span>
+            </div>
+          )}
+
+          {!registrationLoading && filteredRegistrations.length === 0 && (
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-white/30 text-center py-12">
+              {registrations.length === 0 ? "No registration submissions yet." : "No results match your search."}
+            </motion.p>
+          )}
+
+          {!registrationLoading && filteredRegistrations.length > 0 && (
+            <div className="overflow-x-auto custom-scrollbar glass-panel rounded-3xl">
+              <table className="w-full text-sm text-left font-sans">
+                <thead>
+                  <tr className="bg-white/[0.05] border-b border-white/10">
+                    {["Name", "Email", "Plan", "Status", "Date", ""].map((h) => (
+                      <th key={h} className="px-5 py-4 text-xs text-blue-300/70 font-outfit font-bold uppercase tracking-widest">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredRegistrations.map((r, i) => (
+                    <motion.tr
+                      key={r._id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.03 }}
+                      className="border-b border-white/[0.05] hover:bg-white/[0.04] transition-colors last:border-0"
+                    >
+                      <td className="px-5 py-4 font-medium text-white">{r.firstName} {r.lastName}</td>
+                      <td className="px-5 py-4 text-blue-300/80">{r.email}</td>
+                      <td className="px-5 py-4 text-white/70 max-w-xs truncate">{r.plan}</td>
+                      <td className="px-5 py-4 text-white/70">{r.status}</td>
+                      <td className="px-5 py-4 text-white/70">{new Date(r.registrationDate).toLocaleDateString()}</td>
+                      <td className="px-5 py-4 text-center">
+                        <button
+                          onClick={() => openView(r, "registration")}
+                          className="px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/20 hover:border-blue-500/40 rounded-lg transition-all text-xs font-semibold tracking-wide"
                         >
                           View
                         </button>
@@ -1813,4 +1946,170 @@ const ChatbotContactsView = () => {
 };
 
 export default Admin;
+
+/* ================= GLOBAL PAYMENTS VIEW ================= */
+
+const GlobalPaymentsView = () => {
+  const [registrations, setRegistrations] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const fetchGlobalPayments = useCallback(() => {
+    setLoading(true);
+    // Using the base registrations route which returns all registrations across all domains
+    axios.get(`${import.meta.env.VITE_API_URL}/api/registrations/`)
+      .then((res) => {
+        // Filter out non-completed payments
+        const paidRegs = Array.isArray(res.data) 
+          ? res.data.filter(r => r.status === "paid" || r.status === "success") 
+          : [];
+        setRegistrations(paidRegs);
+      })
+      .catch((err) => {
+        console.error("Global Payments API Error:", err);
+        setRegistrations([]);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    fetchGlobalPayments();
+  }, [fetchGlobalPayments]);
+
+  const filteredPayments = registrations.filter((r) => {
+    const q = search.toLowerCase();
+    return (
+      `${r.firstName} ${r.lastName}`.toLowerCase().includes(q) ||
+      r.email?.toLowerCase().includes(q) ||
+      r.plan?.toLowerCase().includes(q) ||
+      r.sourceSite?.toLowerCase().includes(q)
+    );
+  });
+
+  // Calculate totals
+  const totalRevenue = registrations.reduce((sum, r) => {
+    const amt = r.paymentDetails?.amountTotal || 0;
+    return sum + Number(amt);
+  }, 0);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      className="space-y-6"
+    >
+      {/* Header & Metrics */}
+      <div className="flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-white font-outfit tracking-wide">
+            Global Payments
+          </h1>
+          <p className="text-blue-300/60 text-sm mt-1">
+            Overview of all completed transactions across all conferences
+          </p>
+        </div>
+        
+        {/* Metric Cards */}
+        <div className="flex space-x-4">
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-4 min-w-[140px]">
+            <p className="text-blue-300/60 text-xs uppercase tracking-wider mb-1">Total Registrations</p>
+            <p className="text-2xl font-bold text-white">{registrations.length}</p>
+          </div>
+          <div className="bg-gradient-to-br from-emerald-600/20 to-teal-600/20 border border-emerald-500/30 rounded-2xl p-4 min-w-[160px]">
+            <p className="text-emerald-300/80 text-xs uppercase tracking-wider mb-1">Total Revenue (USD)</p>
+            <p className="text-2xl font-bold text-emerald-400">${totalRevenue.toLocaleString()}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Search & Refresh */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="relative flex-1 md:w-80">
+          <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search payments (Name, Email, Plan, Domain)..."
+            className="w-full pl-9 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-white/25 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all font-sans"
+          />
+        </div>
+        <motion.button
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.93 }}
+          onClick={fetchGlobalPayments}
+          disabled={loading}
+          className="flex items-center space-x-1.5 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white/50 hover:text-blue-300 text-sm transition-all whitespace-nowrap"
+        >
+          <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
+          <span className="hidden sm:inline">Refresh Data</span>
+        </motion.button>
+      </div>
+
+      {/* Loading / No Data */}
+      {loading ? (
+        <div className="flex items-center justify-center py-20">
+          <RefreshCw size={24} className="text-blue-500 animate-spin" />
+        </div>
+      ) : filteredPayments.length === 0 ? (
+        <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/10">
+          <CreditCard size={40} className="mx-auto text-white/10 mb-3" />
+          <p className="text-white/30">No completed payments found</p>
+        </div>
+      ) : (
+        /* Table */
+        <div className="overflow-x-auto custom-scrollbar glass-panel rounded-3xl border border-white/10 bg-black/20">
+          <table className="min-w-full text-sm text-left text-white font-sans">
+            <thead className="bg-white/[0.05] text-xs uppercase tracking-widest text-blue-300/70 font-outfit font-bold border-b border-white/10">
+              <tr>
+                <th className="px-5 py-4">Name</th>
+                <th className="px-5 py-4">Email</th>
+                <th className="px-5 py-4">Domain (Conf. ID)</th>
+                <th className="px-5 py-4">Plan</th>
+                <th className="px-5 py-4">Amount</th>
+                <th className="px-5 py-4">Mode</th>
+                <th className="px-5 py-4">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredPayments.map((r, i) => (
+                <tr
+                  key={r._id || i}
+                  className="border-b border-white/[0.05] hover:bg-blue-500/10 transition-colors last:border-0"
+                >
+                  <td className="px-5 py-4 font-medium">
+                    {r.firstName} {r.lastName}
+                  </td>
+                  <td className="px-5 py-4 text-blue-300/80">{r.email}</td>
+                  <td className="px-5 py-4 text-purple-300/80 font-medium">
+                    {r.sourceSite === 'DIRECT_REGISTRATION_SOURCE_ID' 
+                      ? (r.plan && r.plan.includes(' - ') ? r.plan.split(' - ').slice(1).join(' - ') : 'Helix Central Portal') 
+                      : (r.sourceSite || "Unknown")}
+                  </td>
+                  <td className="px-5 py-4 text-white/70 truncate max-w-[200px]">{r.plan}</td>
+                  <td className="px-5 py-4 text-emerald-400 font-semibold">
+                    ${r.paymentDetails?.amountTotal || "0"}
+                  </td>
+                  <td className="px-5 py-4">
+                    {r.paymentDetails?.method ? (
+                      <span className="capitalize px-2 py-1 bg-white/10 rounded-md text-xs font-semibold tracking-wider text-blue-300">
+                        {r.paymentDetails.method}
+                      </span>
+                    ) : (
+                      <span className="text-white/40 text-xs">Card / Unknown</span>
+                    )}
+                  </td>
+                  <td className="px-5 py-4 text-white/50 text-xs whitespace-nowrap">
+                    {new Date(r.paymentDate || r.registrationDate).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </motion.div>
+  );
+};
 
